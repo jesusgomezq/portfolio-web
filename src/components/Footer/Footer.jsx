@@ -19,11 +19,6 @@ const Footer = () => {
           </h3>
         </div>
         <div className="flex gap-5">
-          <a href="">
-            <span className="bannerIcon">
-              <FaFacebookF />
-            </span>
-          </a>
           <a href="https://github.com/" target="blank">
             <span className="bannerIcon">
               <FaGithub />

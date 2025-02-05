@@ -36,11 +36,6 @@ const ContactLeft = () => {
       <div className="flex flex-col gap-4">
         <h2 className="uppercase text-base font-titleFont mb-4">encuentrame</h2>
         <div className="flex gap-5">
-          <a href="">
-            <span className="bannerIcon">
-              <FaFacebookF />
-            </span>
-          </a>
           <a href="https://github.com/" target="blank">
             <span className="bannerIcon">
               <FaGithub />
