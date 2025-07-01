@@ -4,7 +4,7 @@ import { Link } from "react-scroll";
 import logoPerfil from "../../../logoPerfil.webp";
 import { CgMenuGridO } from "react-icons/cg";
 import { GoArrowLeft } from "react-icons/go";
-import { FaFacebookF, FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
@@ -96,11 +96,6 @@ const Navbar = () => {
                   encuentrame
                 </h2>
                 <div className="flex gap-5">
-                  <a href="">
-                    <span className="bannerIcon">
-                      <FaFacebookF />
-                    </span>
-                  </a>
                   <a href="https://github.com/" target="blank">
                     <span className="bannerIcon">
                       <FaGithub />
