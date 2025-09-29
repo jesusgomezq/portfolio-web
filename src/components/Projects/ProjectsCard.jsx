@@ -37,6 +37,7 @@ const ProjectsCard = ({ title, des, src }) => {
                 className="text-lg w-10 h-10 bg-black inline-flex justify-center 
             items-center text-gray-400 hover:text-designColor rounded-full 
             cursor-pointer duration-300">
+              <a href="https://combatairsoft.netlify.app/" target="blank"></a>
                 <FaGlobe />
               </span>
             </div>
