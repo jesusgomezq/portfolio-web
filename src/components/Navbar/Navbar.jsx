@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { navLinksdata } from "../../constants";
 import { Link } from "react-scroll";
-import logoPerfil from "../../../logoPerfil.webp";
+import logoPerfil from "../../assets/images/logoPerfil.webp";
 import { CgMenuGridO } from "react-icons/cg";
 import { GoArrowLeft } from "react-icons/go";
 import { FaGithub, FaLinkedinIn, FaGlobe } from "react-icons/fa";

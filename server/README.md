@@ -56,6 +56,7 @@ npm start
 Recibe y procesa mensajes de contacto.
 
 **Request:**
+
 ```json
 {
   "name": "Juan Pérez",
@@ -66,6 +67,7 @@ Recibe y procesa mensajes de contacto.
 ```
 
 **Response (success):**
+
 ```json
 {
   "ok": true,
@@ -74,6 +76,7 @@ Recibe y procesa mensajes de contacto.
 ```
 
 **Response (error):**
+
 ```json
 {
   "error": "Missing required fields"
@@ -100,4 +103,3 @@ Si `VITE_USE_BACKEND` no está configurado, el frontend usa FormSubmit.co como f
 ## Proxy en Vite
 
 El `vite.config.js` en la raíz incluye un proxy que redirige `/api/*` → `http://localhost:4000` durante desarrollo.
-
