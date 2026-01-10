@@ -1,11 +1,10 @@
-import React from "react";
 import { BsGithub } from "react-icons/bs";
 import { FaGlobe, FaReact } from "react-icons/fa";
 import { IoLogoFirebase } from "react-icons/io5";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { SiVitest } from "react-icons/si";
 
-const ProjectsCard = ({ title, des, src }) => {
+const ProjectsCard = ({ title, des, src, link }) => {
   return (
     <section
       className="w-full p-4 lgl:px-10 h-auto lgl:py-10 rounded-lg shadow-shadowAll
@@ -25,21 +24,26 @@ const ProjectsCard = ({ title, des, src }) => {
               {title}
             </h3>
             <div className="flex gap-2">
-              <a href="https://github.com/" target="blank">
-              <span
-                className="text-lg w-10 h-10 bg-black inline-flex justify-center 
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer">
+                <span
+                  className="text-lg w-10 h-10 bg-black inline-flex justify-center 
             items-center text-gray-400 hover:text-designColor rounded-full 
             cursor-pointer duration-300">
-                <BsGithub />
-              </span>
+                  <BsGithub />
+                </span>
               </a>
-              <span
-                className="text-lg w-10 h-10 bg-black inline-flex justify-center 
+              <span>{link}</span>
+              {/* <a href="https://combatairsoft.netlify.app/" target="blank">
+                <span
+                  className="text-lg w-10 h-10 bg-black inline-flex justify-center 
             items-center text-gray-400 hover:text-designColor rounded-full 
             cursor-pointer duration-300">
-              <a href="https://combatairsoft.netlify.app/" target="blank"></a>
-                <FaGlobe />
-              </span>
+                  <FaGlobe />
+                </span>
+              </a> */}
             </div>
           </div>
           <p className="text-sm tracking-wide mt-3 hover:text-gray-100 duration-300">

@@ -4,10 +4,14 @@ import { Link } from "react-scroll";
 import logoPerfil from "../../../logoPerfil.webp";
 import { CgMenuGridO } from "react-icons/cg";
 import { GoArrowLeft } from "react-icons/go";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaGlobe } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n?.language?.slice?.(0, 2) || "es";
   return (
     <section
       className="w-full h-24 mx-auto flex justify-between items-center 
@@ -24,7 +28,35 @@ const Navbar = () => {
       </div>
       <div>
         <ul className="mdl:inline-flex items-center lg:gap-10 hidden gap-6">
-          {navLinksdata.map(({ id, title, link }) => (
+          <li className="relative">
+            <button
+              onClick={() => setLangOpen(!langOpen)}
+              className="flex items-center gap-2 text-base font-normal text-gray-400 tracking-wide cursor-pointer hover:text-designColor duration-300 px-3 py-1 border border-gray-600 rounded">
+              <FaGlobe />
+              <span className="capitalize text-sm">
+                {t(`languageNames.${currentLang}`) || currentLang}
+              </span>
+            </button>
+            <div
+              className={`absolute left-0 mt-2 w-44 bg-bodyColors border border-gray-700 rounded z-50 transform origin-top-left transition-all duration-150 ${
+                langOpen
+                  ? "opacity-100 scale-100 translate-y-0"
+                  : "opacity-0 scale-95 -translate-y-1 pointer-events-none"
+              }`}>
+              {["es", "en", "pt"].map((code) => (
+                <button
+                  key={code}
+                  onClick={() => {
+                    i18n.changeLanguage(code);
+                    setLangOpen(false);
+                  }}
+                  className="w-full text-left px-3 py-2 text-gray-200 hover:bg-gray-700">
+                  {t(`languageNames.${code}`) || code}
+                </button>
+              ))}
+            </div>
+          </li>
+          {navLinksdata.map(({ id, link }) => (
             <li
               className="text-base font-normal text-gray-400 tracking-wide 
             cursor-pointer hover:text-designColor duration-300 capitalize"
@@ -36,11 +68,12 @@ const Navbar = () => {
                 smooth={true}
                 offset={-70}
                 duration={500}>
-                {title}
+                {t(`nav.${link}`)}
               </Link>
             </li>
           ))}
         </ul>
+
         <span
           onClick={() => setMenu(!menu)}
           className="text-3xl mdl:hidden bg-black w-10 h-10 inline-flex items-center
@@ -86,7 +119,7 @@ const Navbar = () => {
                       smooth={true}
                       offset={-70}
                       duration={500}>
-                      {item.title}
+                      {t(`nav.${item.link}`)}
                     </Link>
                   </li>
                 ))}
@@ -96,16 +129,40 @@ const Navbar = () => {
                   encuentrame
                 </h2>
                 <div className="flex gap-5">
-                  <a href="https://github.com/" target="blank">
+                  <a
+                    href="https://github.com/"
+                    target="_blank"
+                    rel="noopener noreferrer">
                     <span className="bannerIcon">
                       <FaGithub />
                     </span>
                   </a>
-                  <a href="https://www.linkedin.com/in/jesus-gomez-02b975168/" target="blank">
+                  <a
+                    href="https://www.linkedin.com/in/jesus-gomez-02b975168/"
+                    target="_blank"
+                    rel="noopener noreferrer">
                     <span className="bannerIcon">
                       <FaLinkedinIn />
                     </span>
                   </a>
+                </div>
+              </div>
+              <div className="mt-6 w-full">
+                <div className="text-sm text-gray-300 mb-2">
+                  {t(`languageNames.${i18n?.language?.slice?.(0, 2) || "es"}`)}
+                </div>
+                <div className="flex flex-col gap-2 w-full">
+                  {["es", "en", "pt"].map((code) => (
+                    <button
+                      key={code}
+                      onClick={() => {
+                        i18n.changeLanguage(code);
+                        setMenu(false);
+                      }}
+                      className="w-full text-left px-3 py-2 text-gray-200 hover:bg-gray-700 rounded">
+                      {t(`languageNames.${code}`) || code}
+                    </button>
+                  ))}
                 </div>
               </div>
               <span

@@ -4,8 +4,10 @@ import { FaCss3, FaHtml5, FaReact, FaSass } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { IoLogoFirebase, IoLogoJavascript } from "react-icons/io5";
 import { SiVitest } from "react-icons/si";
+import { useTranslation } from "react-i18next";
 
 const Habilidades = () => {
+  const { t } = useTranslation();
   return (
     <motion.section
       className="w-full py-10"
@@ -13,7 +15,9 @@ const Habilidades = () => {
       animate={{ opacity: 1, transition: { duration: 0.7 } }}>
       <div className="w-full h-[100%] overflow-hidden rounded-lg">
         <div className="py-12 font-titleFont flex justify-center items-center">
-          <h2 className="capitalize font-bold text-4xl">habilidades</h2>
+          <h2 className="capitalize font-bold text-4xl">
+            {t("resume.tabs.habilidades")}
+          </h2>
         </div>
 
         <div className="flex justify-center items-center">
