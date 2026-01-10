@@ -10,7 +10,6 @@ const ContactRight = () => {
   const [errCode, setErrCode] = useState("");
   const [msgSended, setMsgSended] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const useBackend = import.meta.env.VITE_USE_BACKEND === "true";
 
   // ======= VALIDACION DE CORREO ========
   const emailValidation = () => {
@@ -64,71 +63,36 @@ const ContactRight = () => {
 
     setIsLoading(true);
 
-    if (useBackend) {
-      // Enviar al backend local (/api/contact)
-      fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: userName.trim(),
-          email: email.trim(),
-          phone: telephone.trim(),
-          message: message.trim(),
-        }),
-      })
-        .then(async (response) => {
-          setIsLoading(false);
-          if (response.ok) {
-            setMsgSended(t("contact.messages.sent", { name: userName }));
-            setErrCode("");
-            setUserName("");
-            setTelephone("");
-            setEmail("");
-            setMessage("");
-            setTimeout(() => setMsgSended(""), 5000);
-          } else {
-            const err = await response.json().catch(() => ({}));
-            console.error("Backend error:", err);
-            alert("Error al enviar correo. Por favor, intenta de nuevo.");
-          }
-        })
-        .catch((error) => {
-          setIsLoading(false);
-          console.error("Error:", error);
-          alert("Error al enviar correo. Por favor, intenta de nuevo.");
-        });
-    } else {
-      // Caída a FormSubmit (comportamiento original)
-      const formData = new FormData();
-      formData.append("name", userName.trim());
-      formData.append("email", email.trim());
-      formData.append("phone", telephone.trim());
-      formData.append("message", message.trim());
+    // Enviar correo via FormSubmit
+    const formData = new FormData();
+    formData.append("name", userName.trim());
+    formData.append("email", email.trim());
+    formData.append("phone", telephone.trim());
+    formData.append("message", message.trim());
 
-      fetch("https://formsubmit.co/jgomez4543@gmail.com", {
-        method: "POST",
-        body: formData,
+    fetch("https://formsubmit.co/jgomez4543@gmail.com", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        setIsLoading(false);
+        if (response.ok) {
+          setMsgSended(t("contact.messages.sent", { name: userName }));
+          setErrCode("");
+          setUserName("");
+          setTelephone("");
+          setEmail("");
+          setMessage("");
+          setTimeout(() => setMsgSended(""), 5000);
+        } else {
+          throw new Error("Error al enviar");
+        }
       })
-        .then((response) => {
-          setIsLoading(false);
-          if (response.ok) {
-            setMsgSended(t("contact.messages.sent", { name: userName }));
-            setErrCode("");
-            setUserName("");
-            setTelephone("");
-            setEmail("");
-            setMessage("");
-            setTimeout(() => setMsgSended(""), 5000);
-          } else {
-            throw new Error("Error al enviar");
-          }
-        })
-        .catch((error) => {
-          setIsLoading(false);
-          console.error("Error:", error);
-          alert("Error al enviar correo. Por favor, intenta de nuevo.");
-        });
-    }
+      .catch((error) => {
+        setIsLoading(false);
+        console.error("Error:", error);
+        alert("Error al enviar correo. Por favor, intenta de nuevo.");
+      });
   };
 
   return (
